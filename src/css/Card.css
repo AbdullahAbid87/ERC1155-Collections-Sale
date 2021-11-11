@@ -1,0 +1,158 @@
+.NFT-Container{
+    width: 90%;
+    margin: 0% 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-bottom: 20px;
+}
+.Card-Header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: #251552;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    border-bottom: 2px solid #dde;
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+}
+.Card-Check{
+    background-color: #14a8ff;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 50%;
+    background: #14a8ff;
+    -webkit-box-shadow: 0 0 6px #14a8ff33;
+    box-shadow: 0 0 6px #14a8ff33;
+    user-select: none;
+}
+
+.Card-Container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    width: 25%;
+    border: 3px solid #14a8ff;
+    box-shadow: 3px 5px 15px #04d3;
+    background-color: white;
+    border-radius: 25px;
+    margin-top: 20px;
+    font-family: sans-serif;
+}
+.NFT-Image-Container{
+    width: 100%;
+    height: 200px;
+    margin: 10px 0px;
+}
+
+.NFT-Image{
+    width: 100%;
+    height: 200px;
+    transform: scale(0.9);
+    transition: all 0.5s ease-in-out;
+}
+.NFT-Image:hover{
+    transform: scale(1);
+}
+
+.CostImage{
+    width: 40px;
+    height: 40px;
+}
+.Cost-Container{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: #18b3cc;
+    border-bottom: 2px solid #dde;
+    border-top: 2px solid #dde;
+    margin: 20px 0px;
+    padding: 15px;
+    font-weight: bold;
+
+}
+.CostText{
+    font-size: 25px;
+}
+.Card-Item{
+    color: #8b91da;
+    text-align: center;
+    margin-top: 5px;
+}
+.Card-Item span{
+    font-weight: bolder;
+}
+.Owned-Item{
+    color: #ff14b7;
+}
+.Card-Inputs{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10px;
+}    
+.AmountInput{
+    appearance: none;
+    border:1px solid #14a8ff;
+    width: 60px;
+    margin-right: 10px;
+    border-radius: 5px;
+    padding: 0px 10px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    font-size: 20px;
+}
+.AmountInput::placeholder{
+    font-size: 15px;
+}
+
+.MintBtn{
+    appearance: none;
+    background-color: #14a8ff;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 15px;
+    border-radius: 25px;
+    cursor: pointer;
+}
+.NotLoggedIn{
+    color: #757575;
+    text-align: center;
+    width: 100%;
+    margin-top: 10px;
+}
+.Minting-Loader-Container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.Minting-Loader-Text{
+    color: #14a8ff;
+    padding-right: 10px;
+    font-size: 20px;
+}
+/* Responsive */
+
+@media (min-width:0px) and (max-width:767px) { 
+    .Card-Container{
+        width: 100%;
+    }
+}
+
+@media (min-width:768px) and (max-width:991px) { 
+    .Card-Container{
+        width: 40%;
+    }
+}
+
+@media (min-width:992px) { 
+    
+}

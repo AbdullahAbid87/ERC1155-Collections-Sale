@@ -1,0 +1,39 @@
+{
+  "dna": "c5fbedaeaaf8f85861f2a4a2fef2eafb793d002b",
+  "name": "#2",
+  "description": "This is the description of your NFT project, remember to replace this",
+  "image": "https://gateway.pinata.cloud/ipfs/QmXECbwdeDWZ8F8fnctrWhsQQ2iDFxSNbm7HUPYNqKH4SM/2.png",
+  "edition": 2,
+  "date": 1632311133432,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Black"
+    },
+    {
+      "trait_type": "Eyeball",
+      "value": "Red"
+    },
+    {
+      "trait_type": "Eye color",
+      "value": "Yellow"
+    },
+    {
+      "trait_type": "Iris",
+      "value": "Small"
+    },
+    {
+      "trait_type": "Shine",
+      "value": "Shapes"
+    },
+    {
+      "trait_type": "Bottom lid",
+      "value": "Low"
+    },
+    {
+      "trait_type": "Top lid",
+      "value": "Low"
+    }
+  ],
+  "compiler": ""
+}

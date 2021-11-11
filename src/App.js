@@ -1,23 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
-
-function App() {
+import { useState } from 'react';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from './pages/Home';
+import NFT from './pages/NFT';
+import Navbar from './components/Navbar';
+import { ToastProvider } from "react-toast-notifications";
+const App = () => {
+  const [address, setAddress] = useState(null);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ToastProvider>
+        <BrowserRouter>
+          <Navbar
+            address={address}
+            setAddress={setAddress}
+          />
+          <Routes>
+            <Route exact path={'/'} element={<Home />} />
+            <Route exact path={'/nft'}
+              element={
+                <NFT
+                  address={address}
+                />
+              }
+            />
+          </Routes>
+        </BrowserRouter>
+      </ToastProvider>
     </div>
   );
 }
