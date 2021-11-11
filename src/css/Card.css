@@ -139,6 +139,12 @@
     padding-right: 10px;
     font-size: 20px;
 }
+.Description{
+    text-align: justify;
+    color: #757575;
+    font-size: 12px;
+    padding-top: 5px;
+}
 /* Responsive */
 
 @media (min-width:0px) and (max-width:767px) { 

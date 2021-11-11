@@ -11,6 +11,7 @@ const Card = ({ index, address }) => {
     const [remainingBalance, setRemainingBalance] = useState(0);
     const [owned, setOwned] = useState(0);
     const [cost, setCost] = useState(0);
+    const [description, setDescription] = useState("");
     const [quantity, setQuantity] = useState();
     const [loading, setloading] = useState(false);
     useEffect(() => {
@@ -19,8 +20,11 @@ const Card = ({ index, address }) => {
 
                 const uri = await contract.methods.uri(index).call();
                 const response = await fetch(uri);
-                const ImageJson = await response.json();
-                setImage(ImageJson.image);
+                const nftJson = await response.json();
+                setDescription(nftJson.description);
+                // setImage(CollectionImage);
+                const images = await require(`../assets/images/${index}.png`);
+                setImage(images);
                 const costWei = await contract.methods.cost().call();
                 const etherValue = await web3.utils.fromWei(costWei, 'ether');
                 if (address) {
@@ -30,14 +34,14 @@ const Card = ({ index, address }) => {
                 const _remainingBalance = await contract.methods.getRemainingAmount(index).call();
                 setRemainingBalance(_remainingBalance);
                 setCost(etherValue);
-             
+
 
             } catch (e) {
                 console.error(e);
             }
         })();
         // eslint-disable-next-line
-    }, [address,Image]);
+    }, [address, Image]);
     const onChange = (e) => {
         const re = /^[0-9\b]+$/;
         if (e.target.value === '' || re.test(e.target.value)) {
@@ -94,7 +98,7 @@ const Card = ({ index, address }) => {
         }
         setloading(false);
     }
-  
+
     return (
         <div className="Card-Container">
 
@@ -106,10 +110,13 @@ const Card = ({ index, address }) => {
             </div>
             <div className="NFT-Image-Container">
                 <img
-                    src={Image}
+                    src={require(`../assets/images/${index}.png`).default}
                     alt={`${index}.png`}
                     className="NFT-Image"
                 />
+            </div>
+            <div className="Description">
+                {description}
             </div>
             <div className="Cost-Container">
                 <img src={Ethereum} alt="Logo.png" className="CostImage" />
