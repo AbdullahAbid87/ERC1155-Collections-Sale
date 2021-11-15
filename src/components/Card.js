@@ -16,6 +16,8 @@ const Card = ({ index, address }) => {
     const [loading, setloading] = useState(false);
     const [freeNftId, setfreeNftId] = useState(null);
     const [hasClaimedFreeNFT, setHasClaimedFreeNFT] = useState(true);
+    const [canClaimFreeNFT, setCanClaimFreeNFT] = useState(false);
+
     useEffect(() => {
         (async () => {
             try {
@@ -30,16 +32,17 @@ const Card = ({ index, address }) => {
                 const etherValue = await web3.utils.fromWei(costWei, 'ether');
                 const _freeNftID = await contract.methods.freeNftID().call();
                 setfreeNftId(parseInt(_freeNftID));
-                if(address){
-                     const _hasClaimedFreeNFT = await contract.methods.hasClaimedFreeNFT(address).call();
-                     setHasClaimedFreeNFT(_hasClaimedFreeNFT);
-                }
-               
-
                 if (address) {
+                    const _hasClaimedFreeNFT = await contract.methods.hasClaimedFreeNFT(address).call();
+                    setHasClaimedFreeNFT(_hasClaimedFreeNFT);
+
                     const _owned = await contract.methods.balanceOf(address, index).call();
                     setOwned(_owned);
                 }
+
+                const _canClaimFreeNFT = await contract.methods.canClaimFreeNFT().call();
+                setCanClaimFreeNFT(_canClaimFreeNFT);
+
                 const _remainingBalance = await contract.methods.getRemainingAmount(index).call();
 
                 setRemainingBalance(_remainingBalance);
@@ -109,7 +112,7 @@ const Card = ({ index, address }) => {
         setloading(false);
     }
 
-    const ClaimFreeNFT = async (e) =>{
+    const ClaimFreeNFT = async (e) => {
         setloading(true);
         try {
             await contract.methods.mintFreeNFT().send({
@@ -172,26 +175,26 @@ const Card = ({ index, address }) => {
                                     </div> :
                                     <Fragment>
                                         <div className="Card-Inputs">
-                                                <input
-                                                    type="text"
-                                                    className="AmountInput"
-                                                    placeholder="Quantity"
-                                                    value={quantity}
-                                                    onChange={onChange}
-                                                />
-                                                <button className="MintBtn" onClick={Mint}>Mint</button>
+                                            <input
+                                                type="text"
+                                                className="AmountInput"
+                                                placeholder="Quantity"
+                                                value={quantity}
+                                                onChange={onChange}
+                                            />
+                                            <button className="MintBtn" onClick={Mint}>Mint</button>
+                                        </div>
+                                        {
+                                            (freeNftId === index && !hasClaimedFreeNFT && canClaimFreeNFT) &&
+                                            <div className="FreeNft-Container">
+                                                <button className="FreeNftBtn" onClick={ClaimFreeNFT}>
+                                                    Claim Free NFT
+                                                </button>
                                             </div>
-                                            {
-                                                (freeNftId===index && !hasClaimedFreeNFT) &&
-                                                <div className="FreeNft-Container">
-                                                    <button className="FreeNftBtn" onClick={ClaimFreeNFT}>
-                                                        Claim Free NFT
-                                                    </button>
-                                                </div>
-                                            }
+                                        }
                                     </Fragment>
 
-}
+                            }
 
 
                         </Fragment>

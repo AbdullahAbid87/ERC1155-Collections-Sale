@@ -1,6 +1,6 @@
 import web3 from './web3';
 
-const address = '0x5c907a28DEd8E69c4A891E766AC98c7C8686133a';
+const address = '0x46684613948b8a7fd8B385daE0177A6838e44da0';
 
 const abi = [
 	{
@@ -369,6 +369,19 @@ const abi = [
 				"internalType": "string",
 				"name": "",
 				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "canClaimFreeNFT",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
 			}
 		],
 		"stateMutability": "view",
