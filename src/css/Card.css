@@ -108,6 +108,7 @@
     -moz-appearance: none;
     font-size: 20px;
 }
+
 .AmountInput::placeholder{
     font-size: 15px;
 }
@@ -121,6 +122,9 @@
     font-size: 15px;
     border-radius: 25px;
     cursor: pointer;
+}
+.MintBtn:hover{
+    box-shadow: 2px 2px 20px 0 rgb(78 20 255 / 30%);
 }
 .NotLoggedIn{
     color: #757575;
@@ -144,6 +148,23 @@
     color: #757575;
     font-size: 12px;
     padding-top: 5px;
+}
+.FreeNft-Container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.FreeNftBtn{
+    background-color: #ff14b7;
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 25px;
+    margin-top: 10px;
+    cursor: pointer;   
+}
+.FreeNftBtn:hover{
+    box-shadow: 2px 2px 20px 0 rgb(78 20 255 / 30%);
 }
 /* Responsive */
 

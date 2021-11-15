@@ -3,12 +3,12 @@ import Card from '../components/Card';
 import contract from '../ethereum/collection';
 
 const NFT = ({ address }) => {
-    const [nftSupply, setNftSupply] = useState(0);
+    const [uniqueNFT, setUniqueNFT] = useState(0);
     useEffect(() => {
         (async () => {
             try {
-                const supply = await contract.methods.nftSupply().call();
-                setNftSupply(supply);
+                const supply = await contract.methods.uniqueNFT().call();
+                setUniqueNFT(supply);
             } catch (e) {
                 console.error(e);
             }
@@ -18,7 +18,7 @@ const NFT = ({ address }) => {
         <Fragment>
             <div className="NFT-Container">
                 {
-                    [...Array(parseInt(nftSupply))].map(((el, index) => {
+                    [...Array(parseInt(uniqueNFT))].map(((el, index) => {
                         console.log(index);
                         return <Card address={address} index={index} key={index} />
                     }))
