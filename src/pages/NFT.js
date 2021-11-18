@@ -8,19 +8,21 @@ const NFT = ({ address }) => {
         (async () => {
             try {
                 const supply = await contract.methods.uniqueNFT().call();
-                setUniqueNFT(supply);
+                 setUniqueNFT(supply);
             } catch (e) {
-                console.error(e);
+                console.error(e.message);
             }
         })();
     }, []);
+    const CardComp=(address,index)=>{
+        return <Card address={address} index={index} key={index} />
+    }
     return (
         <Fragment>
             <div className="NFT-Container">
                 {
                     [...Array(parseInt(uniqueNFT))].map(((el, index) => {
-                        console.log(index);
-                        return <Card address={address} index={index} key={index} />
+                        return CardComp(address,index);
                     }))
                 }
             </div>

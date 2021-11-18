@@ -1,25 +1,55 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "../css/Navbar.css";
 import Logo from "../assets/Logo.png";
 import { Link } from 'react-router-dom';
 import web3 from "../ethereum/web3";
 import powerOff from "../assets/powerOff.png";
 import { useToasts } from "react-toast-notifications";
+import { networkId } from '../config';
 const Navbar = ({ address, setAddress }) => {
     const { addToast } = useToasts();
+    useEffect(() => {
+        window.ethereum.on('networkChanged', function (netId) {
+            alert(netId);
+            alert(networkId);
+            if (parseInt(networkId) !== networkId) {
+                setAddress(null);
+                return;
+            }
+        });
+        // eslint-disable-next-line    
+    }, [address])
 
     const Connect = async (e) => {
-        e.preventDefault();
-        if (!window.ethereum) {
-            addToast("Please install MetaMask Extension", {
+        try {
+
+            if (!window.ethereum) {
+                addToast("Please install MetaMask Extension", {
+                    appearance: "error",
+                    autoDismiss: true,
+                });
+                return;
+            }
+            let netId = await web3.eth.net.getId();
+
+            if (parseInt(netId) !== networkId) {
+                addToast("Please Switch to Binance Smart Chain", {
+                    appearance: "error",
+                    autoDismiss: true,
+                });
+                setAddress(null);
+                return;
+            }
+            const accounts = await web3.eth.requestAccounts();
+            localStorage.setItem("address", address);
+            setAddress(accounts[0]);
+        } catch (error) {
+            addToast(error.message, {
                 appearance: "error",
                 autoDismiss: true,
             });
-            return;
         }
-        const accounts = await web3.eth.requestAccounts();
-        localStorage.setItem("address", address);
-        setAddress(accounts[0]);
+
     }
     const LogOut = async () => {
         setAddress(null);
